@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - GameManager
   - PlayerAttack
+  - EnemySpawnPos
+  - PlayerSpawnPos
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -14,8 +17,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 

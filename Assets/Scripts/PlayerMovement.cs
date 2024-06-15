@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float _jumpForce = 14f;
     private int _jumpingcountMax = 2;
-    private int _jumpingcount;
+    [SerializeField]  private int _jumpingcount;
 
     private float _dashDelay = 1f;
     private float _dashForce = 1f;
@@ -34,12 +34,13 @@ public class PlayerMovement : MonoBehaviour
         _controller.OnMoveEvent += Move;
         _controller.OnJumpEvent += Jump;
         _controller.OnDashEvent += Dash;
+        _controller.OnAttackEvent += Attack;
         _jumpingcount = _jumpingcountMax;
         _dashCount = _dashCountMax;
     }
 
     void FixedUpdate()
-    {        
+    {
         transform.Translate(_playerMovement.normalized * Time.deltaTime * _moveSpeed);
         if (_lookat < 0f)
         {
@@ -95,6 +96,11 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(_dashDelay);
         _dashCount = _dashCountMax;
         _iscoroutines = false;
+    }
+
+    public void Attack()
+    {
+        BattleSystem.I.PlayerAttackEnemy();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
